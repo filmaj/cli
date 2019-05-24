@@ -1,22 +1,32 @@
-let helps = {
-  help: `arc [command] <options>
+let chalk = require('chalk')
+let d = chalk.grey
+let g = chalk.green
+let G = chalk.green.bold
 
-Usage:
-  arc init <name>
-  arc sandbox
-  arc repl 
-  arc package 
-  arc help <command>
-  arc version`,
-  init: `arc init
-generate local code based on .arc (and generate a default .arc if none exists)`,
-  package: `arc package
+let helps = {
+  help: `${G('arc [command] <options>')}
+
+${chalk.grey.bold('Usage')}
+  ${g('arc', G('init'), '<name>')} ${d('..... initialize a project')}
+  ${g('arc', G('sandbox'))} ${d('......... work locally')}
+  ${g('arc', G('repl'))} ${d('............ repl into dynamodb')}
+  ${g('arc', G('package'))} ${d('......... deploy with SAM')}
+  ${g('arc', G('help'), '<command>')} ${d('.. get help')}
+  ${g('arc', G('version'))} ${d('......... current version')}`,
+
+  init: `${G('arc init')}
+${d('generate local code based on .arc (inc  .arc if none exists)')}`,
+
+  package: `${G('arc package')}
 generate sam.json based on .arc`,
-  repl: `arc repl
+
+  repl: `${G('arc repl')}
 start a repl based on .arc`,
-  sandbox: `arc sandbox
+
+  sandbox: `${G('arc sandbox')}
 start a local web server on 3333`,
-  version: `arc version
+
+  version: `${G('arc version')}
 get the current version`
 }
 
@@ -28,11 +38,6 @@ module.exports = function help(opts) {
     console.log(helps[opts[0]])
   }
   else {
-  console.log(`
-architect/cli
-
-sorry I don't know anything about that 
-    `)
-
+    console.log(`sorry, no help found for: ${opts[0]}`)
   }
 }
