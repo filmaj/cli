@@ -1,3 +1,4 @@
+/*eslint no-unused-vars: "off" */
 let chalk = require('chalk')
 let waterfall = require('run-waterfall')
 let cleanEnv = require('@architect/architect/src/util/clean-env')

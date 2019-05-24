@@ -8,7 +8,7 @@ var chalk = require('chalk')
 var repl = require('repl')
 var series = require('run-series')
 
-module.exports = function arcRepl(opts) {
+module.exports = function arcRepl(/*opts*/) {
   series([
     cleanEnv,     // If no NODE_ENV specified, set it to 'testing'
     init,         // Initialize app metadata, creds, etc.

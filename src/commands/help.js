@@ -22,7 +22,7 @@ get the current version`
 
 module.exports = function help(opts) {
   if (opts.length === 0) {
-    console.log(helps.help)  
+    console.log(helps.help)
   }
   else if (helps[opts[0]]) {
     console.log(helps[opts[0]])
@@ -32,7 +32,7 @@ module.exports = function help(opts) {
 architect/cli
 
 sorry I don't know anything about that 
-    `)  
+    `)
 
   }
 }

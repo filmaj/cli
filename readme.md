@@ -1,8 +1,8 @@
-# @architect/cli
+# `@architect/cli`
 
 new experimental global cli tool for architect projects 
 
-# install
+### installation
 
 For now:
 
@@ -37,7 +37,7 @@ start a local web server on 3333
 
 gets the current version
 
-# example usage
+# example usages
 
 create a new app and kick up the local dev server
 

@@ -1,7 +1,7 @@
 {
   "name": "@architect/cli",
   "version": "6.0.0",
-  "description": "",
+  "description": "A global cli tool for quickly building serverless apps with Architect",
   "main": "index.js",
   "bin": {
     "arc": "index.js"
