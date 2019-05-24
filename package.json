@@ -1,0 +1,35 @@
+{
+  "name": "@architect/cli",
+  "version": "6.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "arc": "index.js"
+  },
+  "scripts": {
+    "lint": "eslint src --fix",
+    "build": "pkg index.js && npm run tidy",
+    "tidy": "rm -rf dist && mkdir dist && mv index-linux dist/arc-linux && mv index-macos dist/arc && mv index-win.exe dist/arc.exe"
+  },
+  "keywords": [
+    "aws",
+    "serverless",
+    "architect",
+    "arc",
+    "lambda"
+  ],
+  "author": "Brian LeRoux <b@brian.io>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@architect/architect": "^5.9.1",
+    "chalk": "^2.4.2",
+    "run-series": "^1.1.8",
+    "run-waterfall": "^1.1.6"
+  },
+  "devDependencies": {
+    "tape": "^4.10.1",
+    "tap-spec": "^5.0.0",
+    "eslint": "^5.16.0",
+    "pkg": "^4.4.0"
+  }
+}
