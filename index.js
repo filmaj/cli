@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 let before = require('./src/before')
 let help = require('./src/commands/help')
+let hydrate = require('./src/commands/hydrate')
 let init = require('./src/commands/init')
 let package = require('./src/commands/package')
 let repl = require('./src/commands/repl')
@@ -9,6 +10,7 @@ let version = require('./src/commands/version')
 
 let cmds = {
   help, 
+  hydrate,
   init, 
   package, 
   repl, 
