@@ -22,7 +22,12 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@architect/architect": "^5.9.1",
+    "@architect/data": "^2.1.0",
+    "@architect/parser": "^1.1.7",
+    "aws-sdk": "^2.463.0",
     "chalk": "^2.4.2",
+    "mkdirp": "^0.5.1",
+    "run-parallel": "^1.1.9",
     "run-series": "^1.1.8",
     "run-waterfall": "^1.1.6"
   },

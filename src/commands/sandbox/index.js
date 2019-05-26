@@ -1,9 +1,6 @@
 /*eslint no-unused-vars: "off" */
-let chalk = require('chalk')
-let waterfall = require('run-waterfall')
-let cleanEnv = require('@architect/architect/src/util/clean-env')
-let start = require('@architect/architect/src/sandbox/start')
-let canUse = require('@architect/architect/src/sandbox/_port-in-use')
+let start = require('./start')
+module.exports = start
 
 /*hack for dynalite paths to help pkg find them*/
 let batchGetItem = require('dynalite/actions/batchGetItem.js')
@@ -37,16 +34,3 @@ let untagResourcev = require('dynalite/validations/untagResource.js')
 let updateItemv = require('dynalite/validations/updateItem.js')
 let updateTablev = require('dynalite/validations/updateTable.js')
 /*end hack*/
-
-let PORT = process.env.PORT || 3333
-
-module.exports = function sandbox(opts) {
-  waterfall([
-    canUse(PORT),
-    cleanEnv,
-    start
-  ],
-  function done(err) {
-    if (err) throw err
-  })
-}

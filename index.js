@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+let before = require('./src/before')
 let help = require('./src/commands/help')
 let init = require('./src/commands/init')
 let package = require('./src/commands/package')
@@ -6,9 +7,6 @@ let repl = require('./src/commands/repl')
 let sandbox = require('./src/commands/sandbox')
 let version = require('./src/commands/version')
 
-// todo: hydrate (js, py and rb)
-// todo: env upgrade (cf uses local .arc-env for deploy)
-// todo: port deploy to overwrite cloudformation resources
 let cmds = {
   help, 
   init, 
@@ -21,6 +19,8 @@ let cmds = {
 let args = process.argv.slice(0)
 let binary = args.shift()
 let path = args.shift()
+
+before()
 
 if (args.length === 0) {
   help(args)
