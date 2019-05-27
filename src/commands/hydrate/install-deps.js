@@ -61,7 +61,7 @@ module.exports = function installDeps(callback) {
       }
 
       if (file.includes('requirements.txt'))
-        exec(`pip3 install -r requirements.txt`, options, done)
+        exec(`pip3 install -r requirements.txt -t ./vendor`, options, done)
 
       if (file.includes('Gemfile'))
         exec(`bundle install --path vendor/bundle`, options, done)
