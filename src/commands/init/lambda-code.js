@@ -15,8 +15,9 @@ module.exports = function code({type, runtime, method, path}, callback) {
   let extension = getExtension(runtime)
   let basePath = join(process.cwd(), 'src', type, folder)
   let fullPath = join(basePath, `index.${extension}`)
+  let defaultPath = join(basePath, `index.js`)
 
-  if (fs.existsSync(fullPath)) {
+  if (fs.existsSync(fullPath) || fs.existsSync(defaultPath)) {
     callback()
   }
   else {

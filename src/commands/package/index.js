@@ -1,6 +1,6 @@
 let fs = require('fs')
 let chalk = require('chalk')
-let config = require('@architect/architect/src/package')
+let config = require('@architect/package')
 let readArcFile = require('../../read-arc')
 
 module.exports = function pack(/*opts*/) {

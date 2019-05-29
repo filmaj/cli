@@ -23,6 +23,7 @@
   "dependencies": {
     "@architect/architect": "^5.9.2",
     "@architect/data": "^2.1.0",
+    "@architect/package": "^1.0.0",
     "@architect/parser": "^1.1.7",
     "aws-sdk": "^2.463.0",
     "chalk": "^2.4.2",
