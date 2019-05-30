@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var sandbox = require('@architect/architect/src/sandbox')
+var sandbox = require('@architect/sandbox')
 var chalk = require('chalk')
 var repl = require('repl')
 
