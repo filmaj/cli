@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 let before = require('./src/before')
+let deploy = require('./src/commands/deploy')
 let help = require('./src/commands/help')
 let hydrate = require('./src/commands/hydrate')
 let init = require('./src/commands/init')
@@ -9,6 +10,7 @@ let sandbox = require('./src/commands/sandbox')
 let version = require('./src/commands/version')
 
 let cmds = {
+  deploy,
   help, 
   hydrate,
   init, 

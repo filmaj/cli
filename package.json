@@ -34,7 +34,9 @@
     "mkdirp": "^0.5.1",
     "run-parallel": "^1.1.9",
     "run-series": "^1.1.8",
-    "run-waterfall": "^1.1.6"
+    "run-waterfall": "^1.1.6",
+    "zip-dir": "^1.0.2",
+    "zipit": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
