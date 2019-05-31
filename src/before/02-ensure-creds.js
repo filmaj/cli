@@ -1,18 +1,28 @@
-let aws = require('aws-sdk')
 let chalk = require('chalk')
-let readArcFile = require('../read-arc')
-let warn = msg=> console.log(chalk.yellow(msg))
+let aws = require('aws-sdk')
+let readArcFile = require('@architect/utils/read-arc')
 
 /**
  * ensures the following env vars are present:
  *
  * - NODE_ENV (default 'testing')
  * - AWS_REGION (default us-west-2)
- * - AWS_PROFILE (will warn if not present)
  */
 module.exports = function ensureCreds() {
 
-  let {arc} = readArcFile()
+  let arc
+  try {
+    let parsed = readArcFile()
+    arc = parsed.arc
+  }
+  catch(e) {
+    if (e.message === 'not_found') {
+  console.log(chalk.grey('.------------------------------.'))
+  console.log(chalk.grey('|'), chalk.bold.yellow('Warning'), chalk.yellow('.arc file not found!'), chalk.grey('|'))
+  console.log(chalk.grey('|'), chalk.grey('Generate by running'), chalk.bold.green('arc init'), chalk.grey('|'))
+  console.log(chalk.grey('\'------------------------------\''))
+    }
+  }
 
   // always ensure NODE_ENV
   if (!process.env.hasOwnProperty('NODE_ENV'))
@@ -29,12 +39,8 @@ module.exports = function ensureCreds() {
     if (region)
       process.env.AWS_REGION = region[1]
 
-    if (profile) {
+    if (profile)
       process.env.AWS_PROFILE = profile[1]
-    }
-    else {
-      warn('missing AWS_PROFILE')
-    }
 
     // FORCE use AWS_REGION and AWS_PROFILE
     if (process.env.AWS_PROFILE) {

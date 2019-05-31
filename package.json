@@ -7,6 +7,7 @@
     "arc": "index.js"
   },
   "scripts": {
+    "test": "tape test/*-test.js | tap-spec",
     "lint": "eslint src --fix",
     "build": "pkg index.js && npm run tidy",
     "tidy": "rm -rf dist && mkdir dist && mv index-linux dist/arc-linux && mv index-macos dist/arc && mv index-win.exe dist/arc.exe"
@@ -26,7 +27,7 @@
     "@architect/package": "^1.0.0",
     "@architect/parser": "^1.1.7",
     "@architect/sandbox": "^1.0.0",
-    "@architect/utils": "^1.0.3",
+    "@architect/utils": "^1.0.4",
     "aws-sdk": "^2.463.0",
     "chalk": "^2.4.2",
     "glob": "^7.1.4",

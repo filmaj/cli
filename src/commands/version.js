@@ -1,2 +1,2 @@
-let {version} = require('../../package.json')
-module.exports = () => console.log(version)
+// just noop, the banner has a version
+module.exports = function noop() {}

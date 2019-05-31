@@ -1,13 +1,21 @@
+let readArcFile = require('@architect/utils/read-arc')
 let chalk = require('chalk')
-
 let {version} = require('../../package.json')
-let readArcFile = require('../read-arc')
-let x = process.platform.startsWith('win')? '~' : '⌁'
 
 module.exports = function printBanner() {
 
-  let {arc} = readArcFile()
+  let arc
+  try {
+    let parsed = readArcFile()
+    arc = parsed.arc
+  }
+  catch(e) {
+    if (e.message != 'not_found')
+      console.log(e)
+  }
+
   let name = arc? arc.app[0] : '.arc is undefined'
+  let x = process.platform.startsWith('win')? '~' : '⌁'
 
   let region = process.env.AWS_REGION || 'AWS_REGION is undefined'
   let profile = process.env.AWS_PROFILE || 'AWS_PROFILE is undefined'
