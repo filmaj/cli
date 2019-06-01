@@ -7,6 +7,7 @@ let child = require('child_process')
 let path = require('path')
 let fs = require('fs')
 let statics = require('../static')
+let patchApiGateway = require('./patch-apig')
 
 /**
  * Shells out to AWS SAM for package/deploy
@@ -69,7 +70,7 @@ module.exports = function samDeploy(opts, callback) {
     },
     success() {
       let check = chalk.green('✓')
-      let msg = chalk.grey('Successfully deployed')
+      let msg = chalk.grey('Deployed')
       let time = chalk.green.bold((Date.now() - ts)/1000 + ' seconds')
       console.log(check, msg, time)
     }
@@ -143,10 +144,7 @@ module.exports = function samDeploy(opts, callback) {
 
     // the things I do..
     function patchAPIGatewayBinaryTypes(callback) {
-      // get apigaeway physicalid
-      // update it somehow lol
-      // do a dirty deploy!
-      callback()
+      patchApiGateway(opts, callback)
     }
   ], callback)
 

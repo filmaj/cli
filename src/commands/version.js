@@ -1,2 +1,3 @@
-// just noop, the banner has a version
-module.exports = function noop() {}
+module.exports = function noop(/*opts*/) {
+  // banner shows version!
+}
