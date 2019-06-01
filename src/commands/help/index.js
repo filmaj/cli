@@ -8,13 +8,15 @@ let helps = {
   help: `${G('arc [command] <options>')}
 
 ${chalk.grey.bold('Usage')}
-  ${g('arc', G('init'), '<name>')} ${d('........................ initialize a project')}
-  ${g('arc', G('sandbox'))} ${d('............................ work locally')}
-  ${g('arc', G('repl'))} ${d('............................... repl into dynamodb')}
-  ${g('arc', G('package'))} ${d('............................ deploy with SAM')}
-  ${g('arc', G('deploy'), '[dirty|static|production]')} ${d('... deploy with CFN')}
-  ${g('arc', G('help'), '<command>')} ${d('..................... get help')}
-  ${g('arc', G('version'))} ${d('............................ current version')}`,
+  ${g('arc', G('init'), '<name>')} ${d('........................... initialize a project')}
+  ${g('arc', G('sandbox'))} ${d('............................... work locally')}
+  ${g('arc', G('repl'))} ${d('.................................. repl into dynamodb')}
+  ${g('arc', G('package'))} ${d('............................... deploy with SAM')}
+  ${g('arc', G('deploy'), '[dirty|static|production]')} ${d('...... deploy with CFN')}
+  ${g('arc', G('logs'), 'path/to/code', '[production|nuke]')} ${d('... work with logs')}
+  ${g('arc', G('help'), '<command>')} ${d('........................ get help')}
+  ${g('arc', G('version'))} ${d('............................... get the current version')}
+`,
 
   init: `${G('arc init')}
 ${d('generate local code based on .arc (inc  .arc if none exists)')}`,
