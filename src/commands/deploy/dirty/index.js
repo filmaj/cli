@@ -3,10 +3,16 @@ let parallel = require('run-parallel')
 let aws = require('aws-sdk')
 let chalk = require('chalk')
 let utils = require('@architect/utils')
-let dirtyDeployOne = require('./dirty-one')
+let dirtyDeployOne = require('./deploy-one')
 
-// attempts to resolve logical ids for all rsources in the given stack
-// then attempts to updateFunctionCode for those resources
+/**
+ * attempts to resolve logical ids for all rsources in the given stack
+ * then attempts to updateFunctionCode for those resources
+ *
+ * @param {Array} opts - argument options passed in
+ * @param {Function} callback - node style errback
+ * @returns {Promise} if no callback is supplied
+ */
 module.exports = function dirty(opts, callback) {
 
   // time the deploy
@@ -27,22 +33,23 @@ module.exports = function dirty(opts, callback) {
   let pretty = {
     url(v) {
       if (v)
-        console.log(chalk.cyan.underline(v))
+        console.log(chalk.cyan.underline(v), '\n')
+    },
+    warn() {
+      console.log('🤠', chalk.yellow.bold('Dirty deploy!'))
     },
     success() {
-      let check = chalk.green('✓')
-      let msg = chalk.grey('Successfully deployed')
+      let msg = chalk.grey('deployed in')
       let time = chalk.green.bold((Date.now() - ts)/1000 + ' seconds')
-      console.log(check, msg, time)
+      console.log('✅', chalk.green.bold('Success'), msg, time)
     }
   }
-
-  console.log(chalk.yellow.bold('Dirty deploy!'))
 
   let {arc} = utils.readArc()
   let appname = arc.app[0]
   let name = `${utils.toLogicalID(appname)}Staging`
 
+  pretty.warn()
   waterfall([
 
     function readResources(callback) {
@@ -61,7 +68,7 @@ module.exports = function dirty(opts, callback) {
     },
 
     function readLocal(functions, callback) {
-      let {localPaths} = utils.inventory()
+      let {localPaths} = utils.inventory(arc)
       parallel(localPaths.map(pathToCode=> {
         return function one(callback) {
           let folder = pathToCode.split('/').reverse().shift()
@@ -71,7 +78,8 @@ module.exports = function dirty(opts, callback) {
             let FunctionName = found.PhysicalResourceId
             dirtyDeployOne({
               FunctionName,
-              pathToCode
+              pathToCode,
+              arc,
             }, callback)
           }
           else {
@@ -89,7 +97,7 @@ module.exports = function dirty(opts, callback) {
       })
     },
 
-    function read(callback) {
+    function readURL(callback) {
       let cloudformation = new aws.CloudFormation
       cloudformation.describeStacks({
         StackName: name

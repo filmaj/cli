@@ -31,10 +31,13 @@
     "aws-sdk": "^2.466.0",
     "chalk": "^2.4.2",
     "glob": "^7.1.4",
+    "mime-types": "^2.1.24",
     "mkdirp": "^0.5.1",
+    "path-sort": "^0.1.0",
     "run-parallel": "^1.1.9",
     "run-series": "^1.1.8",
     "run-waterfall": "^1.1.6",
+    "sha": "^3.0.0",
     "zip-dir": "^1.0.2",
     "zipit": "^1.0.2"
   },

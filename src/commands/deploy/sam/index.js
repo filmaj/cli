@@ -6,8 +6,15 @@ let utils = require('@architect/utils')
 let child = require('child_process')
 let path = require('path')
 let fs = require('fs')
-let statics = require('./static')
+let statics = require('../static')
 
+/**
+ * Shells out to AWS SAM for package/deploy
+ *
+ * @param {Array} opts - option arguments
+ * @param {Function} callback - a node-style errback
+ * @returns {Promise} - if not callback is supplied
+ */
 module.exports = function samDeploy(opts, callback) {
 
   let ts = Date.now()
@@ -58,7 +65,7 @@ module.exports = function samDeploy(opts, callback) {
       console.log(chalk.yellow.dim(data))
     },
     url(v) {
-      console.log(chalk.cyan.underline(v))
+      console.log(chalk.cyan.underline(v), '\n')
     },
     success() {
       let check = chalk.green('✓')
@@ -84,9 +91,8 @@ module.exports = function samDeploy(opts, callback) {
       fs.writeFile(name, JSON.stringify(body, null, 2), callback)
     },
     function samPackage(callback) {
-      // runs `sam package`
-      let command = 'sam'
-      let args = [
+      pretty.package()
+      spawn('sam', [
         'package',
         '--template-file',
         'sam.json',
@@ -94,14 +100,12 @@ module.exports = function samDeploy(opts, callback) {
         'out.yaml',
         '--s3-bucket',
         bucket
-      ]
-      pretty.package()
-      spawn(command, args, callback)
+      ], callback)
     },
+
     function samDeploy(callback) {
-      // runs `sam deploy`
-      let command = 'sam'
-      let args = [
+      pretty.deploy()
+      spawn('sam', [
         'deploy',
         '--template-file',
         'out.yaml',
@@ -111,10 +115,9 @@ module.exports = function samDeploy(opts, callback) {
         bucket,
         '--capabilities',
         'CAPABILITY_IAM'
-      ]
-      pretty.deploy()
-      spawn(command, args, callback)
+      ], callback)
     },
+
     function printURL(callback) {
       pretty.success()
       let cloudformation = new aws.CloudFormation
@@ -131,13 +134,19 @@ module.exports = function samDeploy(opts, callback) {
         callback()
       })
     },
+
     function staticDeploy(callback) {
-      if (arc.static) {
+      if (arc.static)
         statics(opts, callback)
-      }
-      else {
-        callback()
-      }
+      else callback()
+    },
+
+    // the things I do..
+    function patchAPIGatewayBinaryTypes(callback) {
+      // get apigaeway physicalid
+      // update it somehow lol
+      // do a dirty deploy!
+      callback()
     }
   ], callback)
 

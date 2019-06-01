@@ -10,24 +10,24 @@ let validate = require('./validate')
  *
  * options
  * -p|--production|production ... deploys to AppNameProduction
- * -d|--dirty|dirty ............. stging only dirty deploy deploy
- * -s|--static|static ........... deploys /public to static bucket
+ * -d|--dirty|dirty ............. *staging only* dirty deploy function code/config
+ * -s|--static|static ........... dirty deploys /public to s3 bucket
  * -v|--verbose|verbose ......... prints all output to console
  */
 let isDirty = opt=> opt === 'dirty' || opt === '--dirty' || opt === '-d'
 let isStatic = opt=> opt === 'static' || opt === '--static' || opt === '-s'
 
-module.exports = function deploy(opts=[]) {
+module.exports = async function deploy(opts=[]) {
 
   validate(opts)
 
   if (opts.some(isDirty)) {
-    dirty(opts)
+    await dirty(opts)
   }
   else if (opts.some(isStatic)) {
-    statics(opts)
+    await statics(opts)
   }
   else {
-    sam(opts)
+    await sam(opts)
   }
 }
