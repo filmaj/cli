@@ -2,7 +2,7 @@ let readArcFile = require('@architect/utils/read-arc')
 let chalk = require('chalk')
 let {version} = require('../../package.json')
 
-module.exports = function printBanner() {
+module.exports = function printBanner(args) {
 
   let arc
   try {
@@ -19,10 +19,11 @@ module.exports = function printBanner() {
 
   let region = process.env.AWS_REGION || 'AWS_REGION is undefined'
   let profile = process.env.AWS_PROFILE || 'AWS_PROFILE is undefined'
+  let lead = args[0] === 'env'? '#' : ' '
 
-  console.log(chalk.grey(`     app ${x} ${chalk.cyan.bold(name)}`))
-  console.log(chalk.grey(`  region ${x} ${chalk.cyan(region)}`))
-  console.log(chalk.grey(` profile ${x} ${chalk.cyan(profile)}`))
-  console.log(chalk.grey(` version ${x} ${chalk.cyan(version)}`))
-  console.log(chalk.grey(`     cwd ${x} ${chalk.cyan(process.cwd())}\n`))
+  console.log(chalk.grey(`${lead}     app ${x} ${chalk.cyan.bold(name)}`))
+  console.log(chalk.grey(`${lead}  region ${x} ${chalk.cyan(region)}`))
+  console.log(chalk.grey(`${lead} profile ${x} ${chalk.cyan(profile)}`))
+  console.log(chalk.grey(`${lead} version ${x} ${chalk.cyan(version)}`))
+  console.log(chalk.grey(`${lead}     cwd ${x} ${chalk.cyan(process.cwd())}\n`))
 }

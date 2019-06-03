@@ -1,4 +1,3 @@
-//let utils = require('@architect/utils')
 let aws = require('aws-sdk')
 
 /**
@@ -16,7 +15,6 @@ module.exports = function getPhysicalID({name, logicalID}, callback) {
   function done(err, data) {
     if (err) callback(err)
     else {
-      //let folder = pathToCode.split('/').filter(Boolean).reverse().shift()
       let find = i=> i.ResourceType === 'AWS::Lambda::Function'
       let functions = data.StackResourceSummaries.filter(find)
       let found = functions.find(f=> f.LogicalResourceId === logicalID)

@@ -13,7 +13,7 @@ let readLogs = require('./read-logs')
  *
  * @param {Array} opts - option arguments
  * @param {Function} callback - a node-style errback
- * @returns {Promise} - if not callback is supplied
+ * @returns {Promise} - if no callback is supplied
  */
 module.exports = function samDeploy(opts, callback) {
 

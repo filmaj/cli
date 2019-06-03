@@ -21,13 +21,11 @@ module.exports = async function deploy(opts=[]) {
 
   validate(opts)
 
-  if (opts.some(isDirty)) {
-    await dirty(opts)
-  }
-  else if (opts.some(isStatic)) {
-    await statics(opts)
-  }
-  else {
-    await sam(opts)
-  }
+  if (opts.some(isDirty))
+    return dirty(opts)
+
+  if (opts.some(isStatic))
+    return statics(opts)
+
+  return sam(opts)
 }

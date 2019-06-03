@@ -2,6 +2,7 @@
 let chalk = require('chalk')
 let before = require('./src/before')
 let deploy = require('./src/commands/deploy')
+let env = require('./src/commands/env')
 let help = require('./src/commands/help')
 let hydrate = require('./src/commands/hydrate')
 let init = require('./src/commands/init')
@@ -13,6 +14,7 @@ let version = require('./src/commands/version')
 
 let cmds = {
   deploy,
+  env,
   help, 
   hydrate,
   init, 
@@ -40,7 +42,7 @@ let args = process.argv.slice(0)
 let binary = args.shift()
 let path = args.shift()
 
-before()
+before(args)
 
 ;(async function main() {
   if (args.length === 0) {
