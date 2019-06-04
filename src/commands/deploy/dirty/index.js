@@ -72,7 +72,7 @@ module.exports = function dirty(opts, callback) {
       parallel(localPaths.map(pathToCode=> {
         return function one(callback) {
           let folder = pathToCode.split('/').reverse().shift()
-          let logicalID = utils.toLogicalID(folder)
+          let logicalID = utils.toLogicalID(folder.replace('000', ''))
           let found = functions.find(f=> f.LogicalResourceId === logicalID)
           if (found) {
             let FunctionName = found.PhysicalResourceId
@@ -83,7 +83,7 @@ module.exports = function dirty(opts, callback) {
             }, callback)
           }
           else {
-            console.warn(`${pathToCode} logical id not found`)
+            console.warn(`${pathToCode} logical id ${logicalID} not found`)
             callback()
           }
         }

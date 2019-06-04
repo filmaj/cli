@@ -27,6 +27,9 @@ module.exports = function maybeCreate() {
     let arcFile = `@app
 ${name}
 
+@aws
+# bucket your-deploy-s3-bucket-name
+
 @http
 get /
 `
