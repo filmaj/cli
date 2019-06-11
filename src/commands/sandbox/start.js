@@ -1,7 +1,6 @@
 let sandbox = require('@architect/sandbox')
 
 module.exports = function sandboxImplementation(opts) {
-  process.env.PORT = 3333
   let findPort = opt=> opt === '-p' || opt === '--port' || opt === 'port'
   if (opts && opts.some(findPort)) {
     if (opts.indexOf('-p') >= 0)

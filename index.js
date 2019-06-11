@@ -41,8 +41,10 @@ let pretty = {
 let args = process.argv.slice(0)
 let binary = args.shift()
 let path = args.shift()
+let ver = require('./package.json').version
+process.env.ARC_VERSION = `Architect CLI ${ver}`
 
-before(args)
+before()
 
 ;(async function main() {
   if (args.length === 0) {
