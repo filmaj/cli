@@ -15,13 +15,13 @@ let version = require('./src/commands/version')
 let cmds = {
   deploy,
   env,
-  help, 
+  help,
   hydrate,
-  init, 
+  init,
   logs,
-  package, 
-  repl, 
-  sandbox, 
+  package,
+  repl,
+  sandbox,
   version
 }
 
