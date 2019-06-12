@@ -10,5 +10,5 @@ module.exports = function sandboxImplementation(opts) {
     if (opts.indexOf('port') >= 0)
       process.env.PORT = opts[opts.indexOf('port') + 1]
   }
-  sandbox.start()
+  sandbox.start({disable:true})
 }
