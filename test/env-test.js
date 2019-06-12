@@ -8,7 +8,7 @@ test('cli', t=> {
   child.exec(`node ${index}`, {shell:true}, function exec(err, stdout, stderr) {
     if (err) t.fail(err)
     else {
-      t.ok(true, 'ran anyhow')
+      t.ok(true, 'runs')
       console.log(err, stdout, stderr)
     }
   })

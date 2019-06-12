@@ -144,7 +144,9 @@ module.exports = function samDeploy(opts, callback) {
 
     // the things I do..
     function patchAPIGatewayBinaryTypes(callback) {
-      patchApiGateway(opts, callback)
+      if (arc.http)
+        patchApiGateway(opts, callback)
+      else callback()
     }
   ], callback)
 
