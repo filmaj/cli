@@ -10,5 +10,10 @@ module.exports = function sandboxImplementation(opts) {
     if (opts.indexOf('port') >= 0)
       process.env.PORT = opts[opts.indexOf('port') + 1]
   }
-  sandbox.start({disable:true})
+  sandbox.start({disableBanner: true}, function _done(err) {
+    if (err) {
+      console.log(err)
+      process.exit(1)
+    }
+  })
 }
