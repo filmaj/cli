@@ -8,7 +8,9 @@ let zip = require('./zip')
 let aws = require('aws-sdk')
 
 /**
- * zips and uploads the function to aws
+ * zips and uploads the function; overwrites its configuration based on any .arc-config found
+ *
+ * ...as quickly as possible
  *
  * @param {String} params.FunctionName - a valid lambda function name or arn
  * @param {String} params.pathToCode - path on filesystem to function code
