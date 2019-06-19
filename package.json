@@ -1,6 +1,6 @@
 {
   "name": "@architect/cli",
-  "version": "6.0.9",
+  "version": "6.0.10",
   "description": "A global cli tool for quickly building serverless apps with Architect",
   "main": "index.js",
   "bin": {
@@ -26,9 +26,9 @@
     "@architect/hydrate": "^1.0.1",
     "@architect/package": "^1.0.13",
     "@architect/parser": "^1.1.7",
-    "@architect/sandbox": "^1.0.3",
-    "@architect/utils": "^1.0.8",
-    "aws-sdk": "^2.473.0",
+    "@architect/sandbox": "^1.0.6",
+    "@architect/utils": "^1.0.11",
+    "aws-sdk": "^2.475.0",
     "chalk": "^2.4.2",
     "glob": "^7.1.4",
     "mime-types": "^2.1.24",
