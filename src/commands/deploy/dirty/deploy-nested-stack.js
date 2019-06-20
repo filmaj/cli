@@ -65,7 +65,7 @@ module.exports = function deploySAM({stackname, arc, ts}, callback) {
       parallel(localPaths.map(pathToCode=> {
         return function one(callback) {
           let folder = pathToCode.split('/').reverse().shift()
-          let logicalID = utils.toLogicalID(folder.replace('000', ''))
+          let logicalID = utils.toLogicalID(folder.replace(/000/g, ''))
           let found = functions.find(f=> f.LogicalResourceId === logicalID)
           if (found) {
             let FunctionName = found.PhysicalResourceId
