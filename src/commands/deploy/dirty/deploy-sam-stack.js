@@ -6,7 +6,7 @@ let waterfall = require('run-waterfall')
 let deploy = require('./deploy-one')
 let pretty = require('./pretty')
 
-module.exports = function deploySAM({stackname, arc}, callback) {
+module.exports = function deploySAM({stackname, arc, ts}, callback) {
   waterfall([
 
     function readResources(callback) {
@@ -48,7 +48,7 @@ module.exports = function deploySAM({stackname, arc}, callback) {
       function done(err) {
         if (err) callback(err)
         else {
-          pretty.success()
+          pretty.success(ts)
           callback()
         }
       })
