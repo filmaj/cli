@@ -4,14 +4,10 @@ module.exports = function deploy({stackname, nested, appname, bucket, pretty}, c
   let template = nested? `${appname}-cfn.yaml` : 'sam.yaml'
   let args = [
     'deploy',
-    '--template-file',
-    template,
-    '--stack-name',
-    stackname,
-    '--s3-bucket',
-    bucket,
-    '--capabilities',
-    'CAPABILITY_IAM'
+      '--template-file', template,
+      '--stack-name', stackname,
+      '--s3-bucket', bucket,
+      '--capabilities', 'CAPABILITY_IAM'
   ]
   if (nested) {
     args.push('CAPABILITY_AUTO_EXPAND')

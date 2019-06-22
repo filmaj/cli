@@ -20,9 +20,9 @@ let writeCFN = require('./write-cfn')
  * - AWS::Cloudformation appname-cfn-events.yaml
  *
  */
-module.exports = function pkg({appname, sam, nested, bucket, pretty}, callback) {
+module.exports = function pkg({sam, nested, bucket, pretty}, callback) {
   series([
-    writeSAM.bind({}, {nested, sam}),
-    writeCFN.bind({}, {appname, bucket, pretty, nested})
+    writeSAM.bind({}, {sam, nested}),
+    writeCFN.bind({}, {sam, nested, bucket, pretty})
   ], callback)
 }

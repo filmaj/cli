@@ -4,59 +4,47 @@ let parallel = require('run-parallel')
 let path = require('path')
 let fs = require('fs')
 
-let samPackage = require('./package')
+let samPkg = require('./package')
 
-module.exports = function writeCFN({nested, appname, bucket, pretty}, callback) {
+module.exports = function writeCFN({sam, nested, bucket, pretty}, callback) {
   if (nested) {
     series([
-      function base(callback) {
-        samPackage({
-          filename: `${appname}-cfn.json`,
-          bucket,
-          pretty,
-        }, callback)
+
+      function samPackage(callback) {
+        parallel(Object.keys(sam).map(filename=> {
+          return function package(callback) {
+            samPkg({
+              filename,
+              bucket,
+              pretty,
+            }, callback)
+          }
+        }), callback)
       },
-      function http(callback) {
-        samPackage({
-          filename: `${appname}-cfn-http.json`,
-          bucket,
-          pretty,
-        }, callback)
-      },
-      function events(callback) {
-        samPackage({
-          filename: `${appname}-cfn-events.json`,
-          bucket,
-          pretty,
-        }, callback)
-      },
+
       function uploadToS3(callback) {
         let s3 = new aws.S3
-        parallel({
-          http(callback) {
-            let Key = `${appname}-cfn-http.yaml`
-            let Body = fs.readFileSync(path.join(process.cwd(), Key))
-            s3.putObject({
-              Bucket: bucket,
-              Key,
-              Body,
-            }, callback)
-          },
-          events(callback) {
-            let Key = `${appname}-cfn-events.yaml`
-            let Body = fs.readFileSync(path.join(process.cwd(), Key))
-            s3.putObject({
-              Bucket: bucket,
-              Key,
-              Body,
-            }, callback)
-          },
-        }, callback)
-      },
+        parallel(Object.keys(sam).map(Key=> {
+          return function put(callback) {
+            let bodyPath = path.join(process.cwd(), Key)
+            fs.readFile(bodyPath, function readFile(err, Body) {
+              if (err) callback(err)
+              else {
+                s3.putObject({
+                  Bucket: bucket,
+                  Key,
+                  Body,
+                }, callback)
+              }
+            })
+          }
+        }), callback)
+      }
+
     ], callback)
   }
   else {
-    samPackage({
+    samPkg({
       filename: `sam.json`,
       bucket,
       pretty,

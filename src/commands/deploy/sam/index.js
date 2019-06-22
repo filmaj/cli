@@ -42,7 +42,7 @@ module.exports = function samDeploy(opts, callback) {
   let nested = sam.hasOwnProperty(`${appname}-cfn.json`)
 
   series([
-    before.bind({}, {appname, sam, nested, bucket, pretty}),
+    before.bind({}, {sam, nested, bucket, pretty}),
     deploy.bind({}, {appname, stackname, nested, bucket, pretty}),
     after.bind({}, {ts, arc, opts, pretty, appname, stackname}),
   ], callback)
