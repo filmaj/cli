@@ -8,6 +8,7 @@ module.exports = function pack(/*opts*/) {
   // warn awscli installed
   // warn samcli installed
   // warn unsupported pragmas: ws, events, queues, scheduled, dns
+  // TODO need to output nested files if > 200 resources
 
   if (!arc) {
     console.log(chalk.bold.white.bgRed('Failed to package: .arc not found'))

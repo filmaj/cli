@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+let env = require('@architect/env')
 let chalk = require('chalk')
 let before = require('./src/before')
 let deploy = require('./src/commands/deploy')
-let env = require('./src/commands/env')
 let help = require('./src/commands/help')
 let hydrate = require('./src/commands/hydrate')
 let init = require('./src/commands/init')
