@@ -25,7 +25,7 @@
     "@architect/data": "^2.1.0",
     "@architect/env": "^1.0.0",
     "@architect/hydrate": "^1.1.1",
-    "@architect/package": "^1.0.27",
+    "@architect/package": "^1.0.28",
     "@architect/parser": "^1.1.7",
     "@architect/sandbox": "^1.2.0",
     "@architect/utils": "^1.0.14",
