@@ -7,7 +7,7 @@ let pretty = require('./pretty-print')
 
 module.exports = function readLogs({name, pathToCode, ts}, callback) {
   let folder = pathToCode.split('/').filter(Boolean).reverse().shift()
-  let logicalID = utils.toLogicalID(folder)
+  let logicalID = utils.toLogicalID(folder.replace(/000/g, ''))
   getPhysicalID({
     name,
     logicalID
