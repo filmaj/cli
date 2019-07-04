@@ -29,13 +29,14 @@ module.exports = function deploySAM({stackname, arc, ts}, callback) {
       parallel(localPaths.map(pathToCode=> {
         return function one(callback) {
           let folder = pathToCode.split('/').reverse().shift()
-          let logicalID = utils.toLogicalID(folder.replace('000', ''))
+          let isWS = pathToCode.startsWith('src/ws')
+          let logicalID = utils.toLogicalID(isWS? `websocket-${folder.replace('000', '').replace('ws-', '')}` : folder.replace('000', ''))
           let found = functions.find(f=> f.LogicalResourceId === logicalID)
           if (found) {
             let FunctionName = found.PhysicalResourceId
             deploy({
               FunctionName,
-              pathToCode,
+              pathToCode: pathToCode.replace('ws-', ''),
               arc,
             }, callback)
           }
