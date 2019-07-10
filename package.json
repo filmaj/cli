@@ -25,6 +25,7 @@
     "@architect/data": "^2.1.0",
     "@architect/env": "^1.0.0",
     "@architect/hydrate": "^1.1.1",
+    "@architect/logs": "^1.0.0",
     "@architect/package": "^1.0.30",
     "@architect/parser": "^1.1.7",
     "@architect/repl": "^1.0.0",
