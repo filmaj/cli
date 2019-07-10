@@ -8,7 +8,7 @@ let hydrate = require('./src/commands/hydrate')
 let init = require('./src/commands/init')
 let logs = require('./src/commands/logs')
 let package = require('./src/commands/package')
-let repl = require('./src/commands/repl')
+let repl = require('@architect/repl')
 let sandbox = require('./src/commands/sandbox')
 let version = require('./src/commands/version')
 
@@ -65,4 +65,4 @@ before()
       process.exit(1)
     }
   }
-})();
+})()

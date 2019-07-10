@@ -27,6 +27,7 @@
     "@architect/hydrate": "^1.1.1",
     "@architect/package": "^1.0.30",
     "@architect/parser": "^1.1.7",
+    "@architect/repl": "^1.0.0",
     "@architect/sandbox": "^1.2.1",
     "@architect/utils": "^1.0.16",
     "aws-sdk": "^2.488.0",
