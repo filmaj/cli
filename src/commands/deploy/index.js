@@ -1,6 +1,4 @@
-let dirty = require('./dirty')
-let statics = require('./static')
-let sam = require('./sam')
+let deploy = require('@architect/deploy')
 let validate = require('./validate')
 
 /**
@@ -16,16 +14,20 @@ let validate = require('./validate')
  */
 let isDirty = opt=> opt === 'dirty' || opt === '--dirty' || opt === '-d'
 let isStatic = opt=> opt === 'static' || opt === '--static' || opt === '-s'
+let isProd = opt=> opt === 'production' || opt === '--production' || opt === '-p'
+let isVerbose = opt=> opt === 'verbose' || opt === '--verbose' || opt === '-v'
 
-module.exports = async function deploy(opts=[]) {
+module.exports = async function deployCommand(opts=[]) {
 
   validate(opts)
 
+  let args = { verbose: opts.some(isVerbose), production: opts.some(isProd) }
+
   if (opts.some(isDirty))
-    return dirty(opts)
+    return deploy.dirty()
 
   if (opts.some(isStatic))
-    return statics(opts)
+    return deploy.static(args)
 
-  return sam(opts)
+  return deploy.sam(args)
 }
