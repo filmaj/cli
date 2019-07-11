@@ -38,9 +38,7 @@ let pretty = {
   }
 }
 
-let args = process.argv.slice(0)
-let binary = args.shift()
-let path = args.shift()
+let args = process.argv.slice(2)
 
 before()
 
