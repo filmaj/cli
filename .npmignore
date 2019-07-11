@@ -1,3 +1,8 @@
 dist
 test/
 .eslintrc.js
+.eslintignore
+.travis.yml
+codecov.yaml
+appveyor.yml
+coverage/
