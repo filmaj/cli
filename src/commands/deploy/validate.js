@@ -1,4 +1,4 @@
-let readArc = require('@architect/utils/read-arc')
+let utils = require('@architect/utils')
 let chalk = require('chalk')
 
 let pretty = {
@@ -21,7 +21,7 @@ module.exports = function validate(/*opts*/) {
   // check for sam-cli
   // check for aws-cli
   try {
-    let {arc} = readArc()
+    let {arc} = utils.readArc()
 
     if (!arc.aws)
       throw Error('missing_aws')
