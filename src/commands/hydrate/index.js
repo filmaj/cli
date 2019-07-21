@@ -1,5 +1,5 @@
 let hydrate = require('@architect/hydrate')
 
-module.exports = function hydration(/*opts*/) {
-  hydrate()
+module.exports = async function hydration(/*opts*/) {
+  await hydrate({install:true})
 }
