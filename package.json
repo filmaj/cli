@@ -7,10 +7,11 @@
     "arc": "index.js"
   },
   "scripts": {
-    "test": "npm run lint && npm run test:unit",
-    "test:unit": "tape test/*-test.js | tap-spec",
+    "test": "npm run lint && npm run test:integration && npm run coverage",
+    "test:unit": "tape test/unit/*-test.js test/unit/**/*-test.js test/unit/**/**/*-test.js| tap-spec",
+    "test:integration": "tape test/integration/*-test.js | tap-spec",
     "lint": "eslint . --fix",
-    "coverage": "istanbul cover tape test/*-test.js",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test:unit",
     "build": "pkg index.js && npm run tidy",
     "tidy": "rm -rf dist && mkdir dist && mv index-linux dist/arc-linux && mv index-macos dist/arc && mv index-win.exe dist/arc.exe"
   },
@@ -45,9 +46,11 @@
     "chalk": "^2.4.2"
   },
   "devDependencies": {
+    "codecov": "^3.5.0",
     "eslint": "^5.16.0",
-    "istanbul": "^0.4.5",
+    "nyc": "^14.1.1",
     "pkg": "^4.4.0",
+    "proxyquire": "^2.1.1",
     "sinon": "^7.3.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.11.0"
