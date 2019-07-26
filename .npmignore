@@ -1,8 +1,9 @@
+.eslintignore
+.eslintrc.js
+.nyc_output
+.travis.yml
+appveyor.yml
+codecov.yaml
+coverage/
 dist
 test/
-.eslintrc.js
-.eslintignore
-.travis.yml
-codecov.yaml
-appveyor.yml
-coverage/
