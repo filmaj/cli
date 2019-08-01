@@ -2,7 +2,7 @@
 let start = require('./start')
 module.exports = start
 
-/*hack for dynalite paths to help pkg find them*/
+/*hack for dynalite paths to help pkg find them
 let batchGetItem = require('dynalite/actions/batchGetItem.js')
 let batchWriteItem = require('dynalite/actions/batchWriteItem.js')
 let createTable = require('dynalite/actions/createTable.js')
@@ -33,4 +33,4 @@ let tagResourcev = require('dynalite/validations/tagResource.js')
 let untagResourcev = require('dynalite/validations/untagResource.js')
 let updateItemv = require('dynalite/validations/updateItem.js')
 let updateTablev = require('dynalite/validations/updateTable.js')
-/*end hack*/
+end hack*/
